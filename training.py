@@ -28,7 +28,7 @@ from tensorflow.keras.models import load_model, model_from_json
 from training_utils import TimingCallback, create_lr_annealing_function, get_avgF1
 from glove_loader import DIM
 from sklearn.metrics import f1_score
-from tensorflow.keras import backend as K
+from tensorflow.compat.v1.keras import backend as K
 
 DEBUG = False
 train_info = {}
@@ -37,7 +37,7 @@ global_counter = 0
 config = tf.compat.v1.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.8
 config.gpu_options.allow_growth = True
-K.set_session(tf.Session(config=config))
+K.set_session(tf.compat.v1.Session(config=config))
 
 def load_dataset(dataset_split='total', dataset_name='cdcp_ACL17', dataset_version='new_2',
                  feature_type='embeddings', min_text_len=0, min_prop_len=0, distance=5,
